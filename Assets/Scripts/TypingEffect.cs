@@ -4,80 +4,72 @@ using UnityEngine;
 
 public class TypingEffect : MonoBehaviour
 {
-    public TextMeshProUGUI textDisplay;
+    // References to the TextMeshPro UI elements for intro and weather texts.
+    public TextMeshProUGUI introTextDisplay;
+    public TextMeshProUGUI weatherTextDisplay;
+
+    // Typing speed in seconds, customizable in the Unity Editor.
     public float typingSpeed = 0.05f;
-    private bool isTyping = false;
-    private bool isBlinking = false;
-    private Coroutine blinkingCoroutine;
+
+    // Extended delay for the "..." in the intro text.
+    public float extendedDelay = 0.75f;
+
+    // Reference to the WeatherController to notify when intro is complete.
+    private WeatherController weatherController;
 
     private void Awake()
     {
-        // Start with the cursor blinking
-        StartBlinkingCursor();
+        // Attempt to automatically find the WeatherController in the scene.
+        weatherController = FindObjectOfType<WeatherController>();
+        if (weatherController == null)
+        {
+            Debug.LogError("WeatherController not found in the scene.");
+        }
     }
 
-    public void StartTypingEffect(string newText)
+    public void StartIntroSequence()
     {
-        if (isTyping)
-        {
-            StopCoroutine(nameof(TypeText)); // Stop the current typing if it's already happening
-        }
-        if (isBlinking)
-        {
-            StopBlinkingCursor(); // Stop the cursor from blinking while typing
-        }
-        StartCoroutine(TypeText(newText));
+        // Clears any previous text and starts typing the intro text.
+        StartCoroutine(TypeIntroText("Today's weather looks"));
     }
 
-    IEnumerator TypeText(string textToType)
+    IEnumerator TypeIntroText(string textToType)
     {
-        isTyping = true;
-        textDisplay.text = ""; // Clear existing text
+        introTextDisplay.text = ""; // Ensure the text starts empty.
 
+        // Typing out each character in the intro text.
+        foreach (char letter in textToType.ToCharArray())
+        {
+            introTextDisplay.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        // Adding extended delay dots at the end of the intro.
+        for (int i = 0; i < 3; i++)
+        {
+            introTextDisplay.text += ".";
+            yield return new WaitForSeconds(extendedDelay);
+        }
+
+        // Notify the WeatherController that the intro is complete.
+        weatherController.OnIntroComplete();
+    }
+
+    public void StartWeatherEventTyping(string eventName)
+    {
+        // Starts typing the weather event name after the intro.
+        StartCoroutine(TypeText(eventName, weatherTextDisplay));
+    }
+
+    IEnumerator TypeText(string textToType, TextMeshProUGUI textDisplay)
+    {
+        textDisplay.text = ""; // Start with an empty text.
+
+        // Type out each character of the given text.
         foreach (char letter in textToType.ToCharArray())
         {
             textDisplay.text += letter;
             yield return new WaitForSeconds(typingSpeed);
-        }
-
-        isTyping = false;
-        StartBlinkingCursor(); // Resume cursor blinking after typing is finished
-    }
-
-    void StartBlinkingCursor()
-    {
-        if (!isBlinking)
-        {
-            blinkingCoroutine = StartCoroutine(BlinkingCursor());
-        }
-    }
-
-    void StopBlinkingCursor()
-    {
-        if (blinkingCoroutine != null)
-        {
-            StopCoroutine(blinkingCoroutine);
-            isBlinking = false;
-            // Ensure cursor is not visible after stopping
-            if (textDisplay.text.EndsWith("|"))
-            {
-                textDisplay.text = textDisplay.text.Substring(0, textDisplay.text.Length - 1);
-            }
-        }
-    }
-
-    IEnumerator BlinkingCursor()
-    {
-        isBlinking = true;
-        while (true)
-        {
-            yield return new WaitForSeconds(0.5f); // Wait half a second
-            textDisplay.text += "|"; // Show cursor
-            yield return new WaitForSeconds(0.5f); // Wait half a second
-            if (textDisplay.text.EndsWith("|"))
-            {
-                textDisplay.text = textDisplay.text.Substring(0, textDisplay.text.Length - 1); // Hide cursor
-            }
         }
     }
 }

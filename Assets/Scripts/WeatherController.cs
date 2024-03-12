@@ -1,56 +1,64 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class WeatherController : MonoBehaviour
 {
-    public TextMeshProUGUI weatherText; // Reference to the displayed weather text
-    public TypingEffect typingEffect; // Reference to the TypingEffect script
+    public TypingEffect typingEffect;
+    public string[] weatherEvents;
+    public float delayBetweenEvents = 5.0f; // Time in seconds to wait before showing the next event
+    private string currentWeatherEvent; // Updated to store the name of the current event
+    public int score = 0; // Track the player's score
 
-    [System.Serializable]
-    public class WeatherEvent
+    private void Start()
     {
-        public string name; // Name of the weather event
-        public GameObject visualEffect; // The visual effect prefab for the weather
-        public float duration; // How long this weather event lasts
+        // Start the sequence with an introductory message.
+        typingEffect.StartIntroSequence();
     }
 
-    public WeatherEvent[] weatherEvents; // Array to hold different weather events
-
-    // Start the next weather event
-
-       private void Start()
+    public void OnIntroComplete()
     {
-        StartNextEvent(); // Automatically start the next event when the game starts
+        // Start showing weather events after the intro is complete.
+        StartCoroutine(ShowRandomWeatherEvent());
     }
 
-    public void StartNextEvent()
+    IEnumerator ShowRandomWeatherEvent()
     {
-        if (weatherEvents.Length == 0)
+        while (true) // Loop to continuously show weather events
         {
-            Debug.LogError("No weather events have been added to the array.");
-            return;
-        
+            if (weatherEvents.Length > 0)
+            {
+                int randomIndex = Random.Range(0, weatherEvents.Length);
+                string selectedEvent = weatherEvents[randomIndex];
+
+                typingEffect.StartWeatherEventTyping(selectedEvent);
+
+                // Wait for the specified delay, then clear the text and show the next event
+                yield return new WaitForSeconds(delayBetweenEvents + typingEffect.typingSpeed * selectedEvent.Length);
+            }
+            else
+            {
+                Debug.LogError("No weather events specified in the WeatherController.");
+                yield break; // Exit the coroutine if there are no events to display.
+            }
+
+
+        }
+    }
+
+    public void CheckWeatherEventMatch(string clickedWeatherType)
+    {
+        if (clickedWeatherType == currentWeatherEvent)
+        {
+            score++;
+            Debug.Log("Correct! Score: " + score);
+            // Optionally, show feedback to the player for a correct guess
+        }
+        else
+        {
+            Debug.Log("Incorrect. Current event was: " + currentWeatherEvent);
+            // Optionally, handle incorrect guesses (e.g., score penalty, feedback to the player)
         }
 
-        // Select a random event
-        int randomIndex = Random.Range(0, weatherEvents.Length);
-        WeatherEvent randomEvent = weatherEvents[randomIndex];
-        
-        StartCoroutine(ShowWeatherEvent(randomEvent));
-    }
-
-    // Coroutine to handle the display and duration of a weather event
-    private IEnumerator ShowWeatherEvent(WeatherEvent weatherEvent)
-    {
-        Debug.Log("Weather Event: " + weatherEvent.name + " has started.");
-        // Call StartTypingEffect with the weather event's name
-        typingEffect.StartTypingEffect("Forecast: " + weatherEvent.name);
-        yield return new WaitForSeconds(weatherEvent.duration);
-        Debug.Log("Weather Event: " + weatherEvent.name + " has ended.");
-
-        yield return new WaitForSeconds(1f); // Wait for 1 second before starting the next event
-        StartNextEvent(); // Automatically start the next event
+        // Trigger next weather event display, or handle game progression
     }
 }

@@ -57,8 +57,8 @@ public class TypingEffect : MonoBehaviour
 
     public void StartWeatherEventTyping(string eventName)
     {
-        // Starts typing the weather event name after the intro.
-        StartCoroutine(TypeText(eventName, weatherTextDisplay));
+        StopAllCoroutines(); // Stop any existing typing coroutines
+        StartCoroutine(TypeText(eventName, weatherTextDisplay)); // Starts typing the weather event name after the intro.
     }
 
     IEnumerator TypeText(string textToType, TextMeshProUGUI textDisplay)

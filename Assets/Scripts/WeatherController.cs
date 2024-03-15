@@ -16,6 +16,12 @@ public class WeatherController : MonoBehaviour
     private void Start()
     {
         // Start the sequence with an introductory message.
+        //typingEffect.StartIntroSequence();
+    }
+
+    public void StartGame()
+    {
+        // Start the sequence with an introductory message.
         typingEffect.StartIntroSequence();
     }
 

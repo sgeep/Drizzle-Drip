@@ -21,8 +21,17 @@ public class WeatherController : MonoBehaviour
 
     public void StartGame()
     {
-        // Start the sequence with an introductory message.
+        typingEffect.ResetTyping(); // Clear any existing text
         typingEffect.StartIntroSequence();
+    }
+
+    public void ResetGame() {
+        if (weatherEventCoroutine != null) {
+            StopCoroutine(weatherEventCoroutine);
+            weatherEventCoroutine = null;
+        }
+        scoringSystem.ResetScore();
+        StartGame();
     }
 
     public void OnIntroComplete()

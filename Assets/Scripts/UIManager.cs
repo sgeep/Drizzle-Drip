@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
         titleScreen.SetActive(true);
         pauseScreen.SetActive(false);
         gameOverScreen.SetActive(false);
+        weatherController.gameObject.SetActive(false);
         IsGameActive = false; // Ensure the game state is not active
     }
 
@@ -75,6 +76,7 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         HideAllScreens();
+        weatherController.gameObject.SetActive(true);
         weatherController.StartGame();
         Time.timeScale = 1; // Ensure the game is not paused
         Debug.Log("Game Started!");
@@ -90,12 +92,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Method to retry the game after a game over
     public void RetryGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
         Time.timeScale = 1; // Ensure the game is not paused
         IsGameActive = true;
+        HideAllScreens();
+        weatherController.ResetGame();
     }
 
     // Method to quit to the title screen
@@ -103,8 +106,6 @@ public class UIManager : MonoBehaviour
     {
         ShowTitleScreen();
         // Reset game state as necessary
-        // Optional: Load the title scene if it's a separate scene
-        // SceneManager.LoadScene("TitleSceneName");
     }
 
     // End the game

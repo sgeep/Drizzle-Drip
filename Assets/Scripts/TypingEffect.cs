@@ -72,4 +72,10 @@ public class TypingEffect : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
     }
+
+    public void ResetTyping() {
+    StopAllCoroutines(); // Stop any ongoing typing
+    introTextDisplay.text = "";
+    weatherTextDisplay.text = ""; // Clear existing texts
+}
 }

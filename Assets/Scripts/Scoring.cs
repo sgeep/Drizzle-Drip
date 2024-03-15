@@ -31,7 +31,7 @@ public class Scoring : MonoBehaviour
         Debug.Log("Incorrect. Score reset to 0.");
     }
 
-    private void ResetScore()
+    public void ResetScore()
     {
         score = 0;
         hasScoredThisRound = false;

@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject gameOverScreen;
     public Button firstSelectedButtonGameOver; // Be sure to assign in Unity inspector
+    public Button firstSelectedButtonPause;
 
     // Keeps track of whether the game is currently active
     public bool IsGameActive { get; private set; }
@@ -37,6 +38,13 @@ public class UIManager : MonoBehaviour
         ShowTitleScreen();
     }
 
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("Spacebar pressed");
+            TogglePauseGame();
+        }
+    }
+
     public void ShowTitleScreen()
     {
         titleScreen.SetActive(true);
@@ -52,7 +60,10 @@ public class UIManager : MonoBehaviour
         {
             pauseScreen.SetActive(true);
             Time.timeScale = 0; // Pause the game
+            EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
+            EventSystem.current.SetSelectedGameObject(firstSelectedButtonPause.gameObject); // Set the new selected button
         }
+        Debug.Log("Pausing game");
     }
 
     public void ShowGameOverScreen()
@@ -79,7 +90,24 @@ public class UIManager : MonoBehaviour
         weatherController.gameObject.SetActive(true);
         weatherController.StartGame();
         Time.timeScale = 1; // Ensure the game is not paused
+        IsGameActive = true;
         Debug.Log("Game Started!");
+    }
+
+    public void TogglePauseGame() {
+        // If game is not active or gameOverScreen is active, ignore pause command
+        if (!IsGameActive || gameOverScreen.activeSelf) {
+            return;
+        }
+
+        // Check if the game is currently paused
+        if (Time.timeScale == 1) {
+            // Game is running, so pause it
+            ShowPauseScreen();
+        } else {
+            // Game is paused, so resume it
+            ResumeGame();
+        }
     }
 
     // Method to resume the game from the pause screen

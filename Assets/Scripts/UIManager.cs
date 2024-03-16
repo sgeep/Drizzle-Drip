@@ -12,8 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject titleScreen;
     public GameObject pauseScreen;
     public GameObject gameOverScreen;
-    public Button firstSelectedButtonGameOver; // Be sure to assign in Unity inspector
-    public Button firstSelectedButtonPause;
+
 
     // Keeps track of whether the game is currently active
     public bool IsGameActive { get; private set; }
@@ -52,6 +51,7 @@ public class UIManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         weatherController.gameObject.SetActive(false);
         IsGameActive = false; // Ensure the game state is not active
+        weatherController.ResetGame();
     }
 
     public void ShowPauseScreen()
@@ -60,8 +60,7 @@ public class UIManager : MonoBehaviour
         {
             pauseScreen.SetActive(true);
             Time.timeScale = 0; // Pause the game
-            EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
-            EventSystem.current.SetSelectedGameObject(firstSelectedButtonPause.gameObject); // Set the new selected button
+
         }
         Debug.Log("Pausing game");
     }
@@ -71,9 +70,10 @@ public class UIManager : MonoBehaviour
         gameOverScreen.SetActive(true);
         pauseScreen.SetActive(false);
         titleScreen.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(firstSelectedButtonGameOver.gameObject); // Set the selected button
-        Time.timeScale = 0; // Pause the game
         IsGameActive = false;
+
+
+        Time.timeScale = 0; // Pause the game
     }
 
     public void HideAllScreens()

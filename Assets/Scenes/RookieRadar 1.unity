@@ -364,14 +364,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingEffect: {fileID: 192668621}
   weatherEvents:
-  - sunny
-  - burning hot
-  - cloudy
-  - floody
-  - partly cloudy
-  - rainy
-  - stormy
-  - windy
+  - Name: sunny
+    Previews:
+    - def a brunk and bright day, vibes goinched up. ain't even mad about it
+    - it's a glornch day to the max, got that skreegle shine pumpin'. shades out,
+      squad
+    - about to go on a crump streak, place is litter than a shlengle shine
+    - vitamin d on that savage grind
+    - no cap, outside's straight bussin, like peak vibes
+  - Name: burning hot
+    Previews:
+    - bro, it's lit af outside, like actually cooking us, no cap
+    - this heat is on another level, straight up savage, got me all salty
+    - AC's the real GOAT rn, without it we'd all be ghosting each other
+    - whole vibe's too hot, feels like the earth said 'yeet' to the chill
+    - sun's flexing hard today, skin's getting that tan drip, bet
+  - Name: floody
+    Previews:
+    - streets turning into rivers, this flooding's got us all pressed
+    - rain said 'watch this' and now we're out here with boats
+    - this soak's no joke, streets are getting full skrunked with all this water
+    - ain't just puddles anymore, it's a full-blown skreegle out there
+    - we're on that high-level schlump now, but the water's doing the mos
+  - Name: partly cloudy
+    Previews:
+    - got them mixed signals outside, part lit, part chill
+    - vibe's undecided, like it's finna choose between bussin or just meh
+    - peek-a-boo with the vibes today
+    - it's kinda like my playlist on shuffle, a little Ram Ranch and a little Blue
+      Man's Group
+    - sky's playing it cool, showing off but also kinda shy
+  - Name: windy
+    Previews:
+    - my hair's boutta sue, this gusty bro ain't playin' fair, on god
+    - caps aint safe man, no cap
+    - my goinch vibes getting wrecked by this gale
+    - hair's a mess. feelin like a cringe soyboy fr
+    - skipping the step-out, sweezey breezey turned the day into a skrunk fest
+  - Name: stormy
+    Previews:
+    - feels like the heavens opened up a can of skronk
+    - wind's howling, sky's crying, whole thing's a vibe, but like, a scary one
+    - everything's going off, like nature just hit the chaos button
+    - whole atmosphere's on edge, like it's ready to start some beef
+    - it's all going off outside, like the world's dropping its sickest album yet
+  - Name: cloudy
+    Previews:
+    - sky's looking sus today, all covered up, got that mysterious vibe
+    - fug cumulus so thicc today, the sun's on a missing persons poster.
+    - sun's on a ghosting spree today
+    - got that 'might rain, might not' suspense
+    - vibe's all muted, like the brightness just dipped on us
+  - Name: rainy
+    Previews:
+    - boutta get soaked, mood's all salty, like why now tho
+    - my fit just got finessed by this wet surprise
+    - this drizzle's cringe for the hair
+    - prep for a skrizzle fest, sky is straight crying
+    - gotta ghost that grouper, air outside is lowkey chaotic
   delayBetweenEvents: 5
   score: 0
   scoringSystem: {fileID: 1891612735}
@@ -907,6 +957,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289059987}
   m_CullTransparentMesh: 1
+--- !u!1 &294227680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+  m_PrefabInstance: {fileID: 785424396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &333343791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,13 +1597,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 785424402}
   m_SourcePrefab: {fileID: 100100000, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
 --- !u!224 &785424397 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22475538, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
   m_PrefabInstance: {fileID: 785424396}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &785424398 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9563500, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+  m_PrefabInstance: {fileID: 785424396}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &785424402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294227680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2011ee0011980428dc23e749cce5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 785424398}
 --- !u!1 &834735068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1759,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834735068}
   m_CullTransparentMesh: 1
+--- !u!1 &889891594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+  m_PrefabInstance: {fileID: 1766240376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904262516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,7 +2134,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1424235773}
   m_SourcePrefab: {fileID: 100100000, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
 --- !u!224 &1027068721 stripped
 RectTransform:
@@ -2643,8 +2727,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.5224304, y: 5.6934357}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.0000040084, y: -58.976}
+  m_SizeDelta: {x: 233.5054, y: 105.0047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213097374
 MonoBehaviour:
@@ -2693,8 +2777,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2743,6 +2827,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213097372}
   m_CullTransparentMesh: 1
+--- !u!1 &1424235768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+  m_PrefabInstance: {fileID: 1027068720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1424235769 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9563500, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+  m_PrefabInstance: {fileID: 1027068720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1424235773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424235768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2011ee0011980428dc23e749cce5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1424235769}
 --- !u!1 &1434205577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,6 +3386,11 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1687537240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+  m_PrefabInstance: {fileID: 2017496016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1752885206
 GameObject:
   m_ObjectHideFlags: 0
@@ -3458,24 +3570,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1766240383}
   m_SourcePrefab: {fileID: 100100000, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
 --- !u!224 &1766240377 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22475538, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
   m_PrefabInstance: {fileID: 1766240376}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1766240379 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11434868, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+--- !u!95 &1766240381 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9563500, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
   m_PrefabInstance: {fileID: 1766240376}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &1766240383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889891594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f2011ee0011980428dc23e749cce5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1766240381}
 --- !u!1 &1797865589
 GameObject:
   m_ObjectHideFlags: 0
@@ -3836,6 +3958,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1957876505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+  m_PrefabInstance: {fileID: 1970673195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1970673195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3983,24 +4110,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1970673202}
   m_SourcePrefab: {fileID: 100100000, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
 --- !u!224 &1970673196 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22475538, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
   m_PrefabInstance: {fileID: 1970673195}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1970673198 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11434868, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+--- !u!95 &1970673199 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9563500, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
   m_PrefabInstance: {fileID: 1970673195}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &1970673202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957876505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f2011ee0011980428dc23e749cce5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1970673199}
 --- !u!1001 &2017496016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4148,13 +4285,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 149968, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2017496022}
   m_SourcePrefab: {fileID: 100100000, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
 --- !u!224 &2017496017 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22475538, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
   m_PrefabInstance: {fileID: 2017496016}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2017496018 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9563500, guid: 751f7137cfffd4a16b1a4c191e687d64, type: 3}
+  m_PrefabInstance: {fileID: 2017496016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2017496022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687537240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2011ee0011980428dc23e749cce5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2017496018}
 --- !u!1 &2073736315
 GameObject:
   m_ObjectHideFlags: 0
@@ -4208,8 +4366,6 @@ MonoBehaviour:
   titleScreen: {fileID: 749042234}
   pauseScreen: {fileID: 1842918255}
   gameOverScreen: {fileID: 1171009961}
-  firstSelectedButtonGameOver: {fileID: 1970673198}
-  firstSelectedButtonPause: {fileID: 1766240379}
   weatherController: {fileID: 192668619}
 --- !u!1 &2095833402
 GameObject:

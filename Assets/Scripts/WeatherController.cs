@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeatherController : MonoBehaviour
 {
     public TypingEffect typingEffect;
-    public string[] weatherEvents;
+    public List<WeatherEvent> weatherEvents;
     public float delayBetweenEvents = 5.0f; // Time in seconds to wait before showing the next event
-    private string currentWeatherEvent; // Updated to store the name of the current event
+    private WeatherEvent currentWeatherEvent; // Updated to store the current event
     public int score = 0; // Track the player's score
     public Scoring scoringSystem; // Reference to the scoring system class'
     private Coroutine weatherEventCoroutine; // Store a reference to the coroutine
@@ -47,34 +48,33 @@ public class WeatherController : MonoBehaviour
     {
         while (true) // Loop to continuously show weather events
         {
-            if (weatherEvents.Length > 0)
+            if (weatherEvents.Count > 0)
             {
-                int randomIndex = UnityEngine.Random.Range(0, weatherEvents.Length);
+                int randomIndex = UnityEngine.Random.Range(0, weatherEvents.Count);
                 currentWeatherEvent = weatherEvents[randomIndex];
 
-                typingEffect.StartWeatherEventTyping(currentWeatherEvent);
+                string preview = currentWeatherEvent.GetRandomPreview();
+                typingEffect.StartWeatherEventTyping(preview);
 
                 // Wait for the specified delay, then clear the text and show the next event
-                yield return new WaitForSeconds(delayBetweenEvents + typingEffect.typingSpeed * currentWeatherEvent.Length);
+                yield return new WaitForSeconds(delayBetweenEvents + typingEffect.typingSpeed * preview.Length);
             }
             else
             {
                 Debug.LogError("No weather events specified in the WeatherController.");
                 yield break; // Exit the coroutine if there are no events to display.
             }
-
-
         }
     }
 
     public void CheckWeatherEventMatch(string clickedWeatherType)
     {
-        if (string.Equals(clickedWeatherType.Trim(), currentWeatherEvent.Trim(), StringComparison.OrdinalIgnoreCase)) {
-        scoringSystem.CorrectGuess();
+        if (string.Equals(clickedWeatherType.Trim(), currentWeatherEvent.Name.Trim(), StringComparison.OrdinalIgnoreCase)) {
+            scoringSystem.CorrectGuess();
         }
         else {
-        Debug.Log("Incorrect. Current event was: " + currentWeatherEvent);
-        EndGame();
+            Debug.Log("Incorrect. Current event was: " + currentWeatherEvent.Name);
+            EndGame();
         }
 
         StartCoroutine(PrepareNextRound());
@@ -82,14 +82,27 @@ public class WeatherController : MonoBehaviour
 
     IEnumerator PrepareNextRound()
     {
-    yield return new WaitForSeconds(2); // Adjust delay as needed
-    scoringSystem.NewRound();
-    OnIntroComplete(); // Or directly call ShowRandomWeatherEvent if you don't need the intro sequence again
+        yield return new WaitForSeconds(2); // Adjust delay as needed
+        scoringSystem.NewRound();
+        OnIntroComplete(); // Or directly call ShowRandomWeatherEvent if you don't need the intro sequence again
     }
 
     public void EndGame()
     {
         uiManager.ShowGameOverScreen();
         // Additional logic to end the game
+    }
+}
+
+[System.Serializable]
+public class WeatherEvent
+{
+    public string Name;
+    public List<string> Previews = new List<string>();
+
+    public string GetRandomPreview()
+    {
+        int index = UnityEngine.Random.Range(0, Previews.Count);
+        return Previews[index];
     }
 }
